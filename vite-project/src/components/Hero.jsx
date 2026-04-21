@@ -45,7 +45,7 @@ function Hero({scrollY}){
           ease: "easeInOut",
         }}
       />
-      <div className="image-profile-container"><img src="/images/profile.jpeg" alt="Profile" className="image-profile" /></div>
+      <div className="image-profile-container"><img src="/profile.jpeg" alt="Profile" className="image-profile" /></div>
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
