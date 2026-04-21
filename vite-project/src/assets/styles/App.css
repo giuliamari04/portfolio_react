@@ -242,3 +242,9 @@ html {
   color: #dc2626; /* text-red-600 */
   border: 1px solid rgba(239, 68, 68, 0.2); /* border-red-500/20 */
 }
+
+@media (max-width: 768px) {
+  .image-profile-container {
+   display: none;
+  }
+}

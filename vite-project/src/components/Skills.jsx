@@ -76,7 +76,7 @@ function Skills({scrollY}){
             viewport={{ once: true }}
           >
             <h3 className="text-white mb-6">Tools & Technologies</h3>
-            <div className="grid grid-cols-3 gap-4 mb-6">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
               {tools.map((tool, index) => (
                 <motion.div
                   key={tool}
@@ -93,7 +93,7 @@ function Skills({scrollY}){
             </div>
 
             <h3 className="text-white mb-6">Frameworks</h3>
-            <div className="grid grid-cols-3 gap-4 mb-6">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
               {frameworks.map((framework, index) => (
                 <motion.div
                   key={framework.name}
@@ -109,7 +109,7 @@ function Skills({scrollY}){
               ))}
             </div>
              <h3 className="text-white mb-6">Other Skill</h3>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {skillPlus.map((skill, index) => (
                 <motion.div
                   key={skill.name}

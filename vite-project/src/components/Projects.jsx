@@ -1,10 +1,38 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import projectsData from '../data/projects_data.json';
 import { Github } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
-function Projects({scrollY}) {
+function useResponsiveVisibleItems() {
+  const [visibleItemsCount, setVisibleItemsCount] = useState(1);
+
+  useEffect(() => {
+    const updateVisibleItemsCount = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setVisibleItemsCount(1);
+      } else if (width >= 768 && width < 1024) {
+        setVisibleItemsCount(2);
+      } else {
+        setVisibleItemsCount(3);
+      }
+    };
+
+    // Chiama subito per impostare il valore iniziale
+    updateVisibleItemsCount();
+
+    // Ascolta i cambiamenti di dimensione della finestra
+    window.addEventListener('resize', updateVisibleItemsCount);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', updateVisibleItemsCount);
+  }, []);
+
+  return visibleItemsCount;
+}
+
+function Projects({ scrollY }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -12,9 +40,11 @@ function Projects({scrollY}) {
   });
 
   const projects = projectsData;
-  const visibleItemsCount = 3;
   const [startIndex, setStartIndex] = useState(0);
   const totalProjects = projects.length;
+
+  // Integrazione del hook responsive
+  const visibleItemsCount = useResponsiveVisibleItems();
 
   const handleNext = () => {
     setStartIndex((prevIndex) => {
@@ -75,7 +105,7 @@ function Projects({scrollY}) {
             {visibleProjects.map((project) => (
               <div
                 key={project.title}
-                className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0"
+                className="w-full flex-shrink-0"
               >
                 <motion.div
                   whileHover={{ y: -10 }}
@@ -126,13 +156,13 @@ function Projects({scrollY}) {
           <div className="flex justify-center gap-4 mt-8">
             <button
               onClick={handlePrev}
-              className=" button-next-prev px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700"
+              className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700"
             >
               ←
             </button>
             <button
               onClick={handleNext}
-              className="button-next-prev px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700"
+              className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700"
             >
               →
             </button>
