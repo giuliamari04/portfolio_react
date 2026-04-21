@@ -1,0 +1,15 @@
+[
+  { "name": "Python", "level": 75 },
+    { "name": "JavaScript", "level": 70 },
+    { "name": "Java", "level": 40 },
+    { "name": "PHP", "level": 70 },
+    { "name": "C++", "level": 60 },
+    { "name": "SQL", "level": 70 },
+   
+    
+    { "name": "HTML", "level": 85 },
+    { "name": "CSS", "level": 80 },
+    { "name": "Sass", "level": 75 },
+    { "name": "JavaScript", "level": 70 }
+
+]

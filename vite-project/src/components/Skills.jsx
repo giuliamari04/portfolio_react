@@ -1,5 +1,9 @@
 import {  motion, useScroll, useTransform} from "framer-motion";
 import { useRef } from 'react';
+import skillsData from '../data/skills.json';
+import toolData from '../data/tools.json';
+import frameworkData from '../data/frameworks.json';
+import skillPlusData from '../data/skill_plus.json';
 
 function Skills({scrollY}){
      const ref = useRef<HTMLElement>(null);
@@ -8,27 +12,10 @@ function Skills({scrollY}){
     offset: ["start end", "end start"]
   });
 
-  const skills = [
-    { name: 'React', level: 95 },
-    { name: 'JavaScript', level: 95 },
-    { name: 'Node.js', level: 85 },
-    { name: 'Tailwind CSS', level: 90 },
-    { name: 'Bootstrap CSS', level: 90 },
-    { name: 'Blade', level: 85 },
-    { name: 'PHP', level: 70 },
-    { name: 'Larevel', level: 90 },
-    { name: 'Java', level: 40 },    
-    { name: 'Git', level: 90 },
-    { name: 'UI/UX Design', level: 80 },
-  ];
-
-  const tools = [
-    'Figma',
-    'VS Code',
-    'Vite',
-    'AWS',
-    'PostgreSQL',
-  ];
+  const skills = skillsData;
+  const tools = toolData;
+  const frameworks = frameworkData;
+  const skillPlus = skillPlusData;
     return(
             <section id="skills" className="relative py-32 overflow-hidden">
       {/* Parallax Background */}
@@ -89,7 +76,7 @@ function Skills({scrollY}){
             viewport={{ once: true }}
           >
             <h3 className="text-white mb-6">Tools & Technologies</h3>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-4 mb-6">
               {tools.map((tool, index) => (
                 <motion.div
                   key={tool}
@@ -101,6 +88,39 @@ function Skills({scrollY}){
                   className="p-4 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 hover:border-purple-500/50 transition-all text-center"
                 >
                   <span className="text-gray-300">{tool}</span>
+                </motion.div>
+              ))}
+            </div>
+
+            <h3 className="text-white mb-6">Frameworks</h3>
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              {frameworks.map((framework, index) => (
+                <motion.div
+                  key={framework.name}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="p-4 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 hover:border-purple-500/50 transition-all text-center"
+                >
+                  <span className="text-gray-300">{framework.name}</span>
+                </motion.div>
+              ))}
+            </div>
+             <h3 className="text-white mb-6">Other Skill</h3>
+            <div className="grid grid-cols-3 gap-4">
+              {skillPlus.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="p-4 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 hover:border-purple-500/50 transition-all text-center"
+                >
+                  <span className="text-gray-300">{skill.name}</span>
                 </motion.div>
               ))}
             </div>
@@ -117,7 +137,7 @@ function Skills({scrollY}){
         >
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <h3 className="text-white mb-2">90+</h3>
+              <h3 className="text-white mb-2">2</h3>
               <p className="text-gray-400">Projects Completed</p>
             </div>
             <div>
@@ -125,7 +145,7 @@ function Skills({scrollY}){
               <p className="text-gray-400">Happy Clients</p>
             </div>
             <div>
-              <h3 className="text-white mb-2">1+</h3>
+              <h3 className="text-white mb-2">2+</h3>
               <p className="text-gray-400">Years Experience</p>
             </div>
           </div>

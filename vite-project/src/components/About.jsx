@@ -28,10 +28,9 @@ function About({scrollY}) {
     },
     {
       icon: Rocket,
-      title: "Fast Performance",
+      title: "Continuous Improvement",
       description:
-        "Optimizing applications for speed and efficiency across all devices.",
-    },
+      "I am pursuing studies in Computer Engineering and AI, with a strong interest in continuously expanding my technical knowledge and skills."    },
   ];
 
   return (
@@ -60,8 +59,7 @@ function About({scrollY}) {
               passion for computer science, a field where I found the perfect
               balance between logic and language.I’m a curious and motivated
               person, constantly seeking to expand my technical and cultural
-              knowledge. I ’m passionate about coding, teamwork, and continuous
-              learning.
+              knowledge. I'm currently studying Computer Engineering and AI at the <a href="https://instituteoftechnology.epicode.com/it/bachelor-in-computer-engineering-artificial-intelligence/?_gl=1*4kqs86*_up*MQ..*_gs*MQ..&gclid=CjwKCAjwnZfPBhAGEiwAzg-VzB7ha7bRTiZAw8ojV07EQWbcFBjuKKblRuvQ0NQO8TJR7Jt9DQ_uPBoCgo0QAvD_BwE"><span className="text-purple-400 hover:underline">Institute of Technology Epicode</span></a>, and I’m always eager to learn new technologies and improve my skills
             </p>
             <p className="text-gray-300 mb-8">
               My approach combines technical expertise with creative

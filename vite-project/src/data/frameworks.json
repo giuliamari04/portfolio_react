@@ -1,0 +1,8 @@
+[
+     { "name": "Laravel", "level": 90 },
+    { "name": "Vue.js", "level": 80 },
+    { "name": "React", "level": 60 },
+    { "name": "Node.js", "level": 60 },
+    { "name": "Tailwind CSS", "level": 75 },
+    { "name": "Livewire", "level": 70 }
+]

@@ -1,25 +1,25 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { sendForm, init } from "@emailjs/browser";
 
-function Contacts({scrollY}){
-    const ref = useRef<HTMLElement>(null);
+// Inizializza EmailJS con la tua public key
+init("Dc7DhvJPInSgD5ZkN");
+
+function Contacts({ scrollY }) {
+  const ref = useRef < HTMLElement > null;
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
+  const [messageStatus, setMessageStatus] = useState("");
+  const [flagStatusmessage, setFlagStatusMessage] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-  };
 
   const handleChange = (e) => {
     setFormData({
@@ -28,28 +28,51 @@ function Contacts({scrollY}){
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Usa sendForm per inviare l'email
+    sendForm(
+      "service_fl2m96v", // Sostituisci con il tuo Service ID
+      "template_1zh1poh", // Sostituisci con il tuo Template ID
+      e.target,
+    ).then(
+      (result) => {
+        console.log("Email inviata con successo:", result.text);
+        setFlagStatusMessage(true);
+        setMessageStatus("Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" });
+      },
+      (error) => {
+        console.log("Errore:", error);
+        setMessageStatus("Error sending message. Try again later.");
+      },
+    );
+  };
+
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'giuliamari04@gmail.com',
-      href: 'giuliamari04@gmail.com',
+      label: "Email",
+      value: "giuliamari04@gmail.com",
+      href: "mailto:giuliamari04@gmail.com",
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+39 331 303 3634',
-      href: '+39 3313033634',
+      label: "Phone",
+      value: "+39 331 303 3634",
+      href: "tel:+393313033634",
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'Milano, MI, Italy',
-      href: '#',
+      label: "Location",
+      value: "Milano, MI, Italy",
+      href: "https://maps.app.goo.gl/7HDtH2HMxzuDXZZR7",
     },
   ];
-    return(
-        <section id="contact" className="relative py-32 overflow-hidden">
+
+  return (
+    <section id="contact" className="relative py-32 overflow-hidden">
       {/* Parallax Background */}
       <motion.div
         className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
@@ -57,6 +80,7 @@ function Contacts({scrollY}){
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Sezione intro */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -66,12 +90,14 @@ function Contacts({scrollY}){
         >
           <h2 className="text-white mb-4">Get In Touch</h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Have a project in mind? Let's work together to create something amazing.
+            Have a project in mind? Let's work together to create something
+            amazing.
           </p>
         </motion.div>
 
+        {/* Griglia contatti */}
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Info */}
+          {/* Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -82,11 +108,11 @@ function Contacts({scrollY}){
             <div>
               <h3 className="text-white mb-6">Contact Information</h3>
               <p className="text-gray-400 mb-8">
-                Feel free to reach out through any of these channels. I'm always open to 
-                discussing new projects, creative ideas, or opportunities to be part of your vision.
+                Feel free to reach out through any of these channels. I'm always
+                open to discussing new projects, creative ideas, or
+                opportunities to be part of your vision.
               </p>
             </div>
-
             <div className="space-y-6">
               {contactInfo.map((item, index) => (
                 <motion.a
@@ -111,7 +137,7 @@ function Contacts({scrollY}){
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -121,7 +147,7 @@ function Contacts({scrollY}){
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-gray-300 mb-2">
-                  Name
+                  Name and Surname
                 </label>
                 <input
                   type="text"
@@ -134,7 +160,6 @@ function Contacts({scrollY}){
                   placeholder="Your name"
                 />
               </div>
-
               <div>
                 <label htmlFor="email" className="block text-gray-300 mb-2">
                   Email
@@ -150,7 +175,6 @@ function Contacts({scrollY}){
                   placeholder="your.email@example.com"
                 />
               </div>
-
               <div>
                 <label htmlFor="message" className="block text-gray-300 mb-2">
                   Message
@@ -166,7 +190,6 @@ function Contacts({scrollY}){
                   placeholder="Tell me about your project..."
                 />
               </div>
-
               <motion.button
                 type="submit"
                 whileHover={{ scale: 1.02 }}
@@ -175,12 +198,26 @@ function Contacts({scrollY}){
               >
                 <span>Send Message</span>
                 <Send size={20} />
+                {/* <!-- Elemento per mostrare il messaggio --> */}
               </motion.button>
+              {flagStatusmessage && (
+                <div>
+                  <span className="badge-success">
+                    {messageStatus}
+                  </span>
+                </div>
+              )}
+              {!flagStatusmessage && messageStatus && (
+                <div>
+                  <span className="badge-error">
+                    {messageStatus}
+                  </span>
+                </div>
+              )}
             </form>
           </motion.div>
         </div>
       </div>
-
       {/* Footer */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -190,10 +227,13 @@ function Contacts({scrollY}){
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 pt-8 border-t border-slate-800"
       >
         <div className="text-center text-gray-400">
-          <p>© {new Date().getFullYear()} Made by Giulia Mariano &hearts;. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} Made by Giulia Mariano &hearts;. All
+            rights reserved.
+          </p>
         </div>
       </motion.div>
     </section>
-    );
+  );
 }
 export default Contacts;

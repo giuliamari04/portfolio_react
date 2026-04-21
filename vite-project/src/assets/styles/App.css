@@ -187,3 +187,58 @@
 html {
   font-size: var(--font-size);
 }
+
+.my-width {
+  width: 120%;
+  background: red;
+}
+
+.image-profile{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-profile-container{
+  overflow: hidden;
+  width: 25%;
+  height: 25%;
+  border-radius: 30px;
+  border-width: 4px;
+  margin-left: auto;
+  border:5px solid rgba(131, 58, 180, 0.2);
+  box-shadow: 0 4px 25px rgba(73, 27, 104, 0.2);
+  z-index: 10;
+}
+
+.button-next-prev{
+  font-size: 3rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+}
+
+/* Badge verde (success) */
+.badge-success {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.375rem; /* equivalente a rounded-md */
+  background-color: rgba(34, 197, 94, 0.1); /* bg-green-400 + opacity */
+  padding: 0.25rem 0.5rem; /* px-2 py-1 */
+  font-size: 1.2rem; /* text-xs */
+  font-weight: 500; /* font-medium */
+  color: #16a34a; /* text-green-600 */
+  border: 1px solid rgba(34, 197, 94, 0.2); /* border-green-500/20 */
+}
+
+/* Badge rosso (error) */
+.badge-error {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.375rem; /* equivalente a rounded-md */
+  background-color: rgba(239, 68, 68, 0.1); /* bg-red-400 + opacity */
+  padding: 0.25rem 0.5rem; /* px-2 py-1 */
+  font-size: 1.2rem; /* text-xs */
+  font-weight: 500; /* font-medium */
+  color: #dc2626; /* text-red-600 */
+  border: 1px solid rgba(239, 68, 68, 0.2); /* border-red-500/20 */
+}

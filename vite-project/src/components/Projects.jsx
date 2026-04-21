@@ -1,52 +1,57 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+import { useRef, useState } from 'react';
+import projectsData from '../data/projects_data.json';
+import { Github } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
-
-function Projects({scrollY}){
-     const ref = useRef<HTMLElement>(null);
+function Projects({scrollY}) {
+  const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   });
 
-  const projects = [
-    {
-      title: 'E-Commerce Platform',
-      description: 'A full-featured online shopping platform with payment integration, user authentication, and admin dashboard.',
-      image: 'https://images.unsplash.com/photo-1632144130358-6cfeed023e27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGRlc2lnbiUyMHByb2plY3R8ZW58MXx8fHwxNzYxODA1OTMzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      tags: ['React', 'TypeScript', 'Node.js', 'Stripe'],
-      github: '#',
-      live: '#',
-    },
-    {
-      title: 'Mobile Banking App',
-      description: 'Modern banking application with real-time transactions, budget tracking, and financial analytics.',
-      image: 'https://images.unsplash.com/photo-1658953229625-aad99d7603b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzYxNzg5NjU3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      tags: ['React Native', 'Firebase', 'Redux'],
-      github: '#',
-      live: '#',
-    },
-    {
-      title: 'Portfolio CMS',
-      description: 'Content management system for creative professionals to showcase their work with customizable themes.',
-      image: 'https://images.unsplash.com/photo-1630283017802-785b7aff9aac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3b3Jrc3BhY2UlMjBkZXNrfGVufDF8fHx8MTc2MTc3OTQxMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      tags: ['Next.js', 'Tailwind', 'MongoDB'],
-      github: '#',
-      live: '#',
-    },
-  ];
+  const projects = projectsData;
+  const visibleItemsCount = 3;
+  const [startIndex, setStartIndex] = useState(0);
+  const totalProjects = projects.length;
 
-    return(
-        <section id="projects" className="relative py-32 overflow-hidden">
-      {/* Parallax Background */}
+  const handleNext = () => {
+    setStartIndex((prevIndex) => {
+      const newIndex = prevIndex + visibleItemsCount;
+      return newIndex >= totalProjects ? 0 : newIndex;
+    });
+  };
+
+  const handlePrev = () => {
+    setStartIndex((prevIndex) => {
+      const newIndex = prevIndex - visibleItemsCount;
+      return newIndex < 0 ? Math.max(totalProjects - visibleItemsCount, 0) : newIndex;
+    });
+  };
+
+  // Funzione per ottenere gli elementi da mostrare
+  const getVisibleProjects = () => {
+    const visibleProjects = [];
+    for (let i = 0; i < visibleItemsCount; i++) {
+      const index = (startIndex + i) % totalProjects;
+      visibleProjects.push(projects[index]);
+    }
+    return visibleProjects;
+  };
+
+  const visibleProjects = getVisibleProjects();
+
+  return (
+    <section id="projects" className="relative py-32 overflow-hidden">
+      {/* Background */}
       <motion.div
         className="absolute top-1/2 left-0 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"
         style={{ y: useTransform(scrollYProgress, [0, 1], [100, -100]) }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -60,67 +65,82 @@ function Projects({scrollY}){
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-              className="group relative bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-700/50 hover:border-purple-500/50 transition-all"
+        {/* SLIDER */}
+        <div className="relative overflow-hidden">
+          {/* TRACK */}
+          <motion.div
+            className="flex gap-8"
+            // animate non più necessario perché gestiamo il cambio con il rendering
+          >
+            {visibleProjects.map((project) => (
+              <div
+                key={project.title}
+                className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0"
+              >
+                <motion.div
+                  whileHover={{ y: -10 }}
+                  className="group relative bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-700/50 hover:border-purple-500/50 transition-all"
+                >
+                  {/* IMAGE */}
+                  <div className="relative h-48 overflow-hidden">
+                    <ImageWithFallback
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60" />
+                  </div>
+
+                  {/* CONTENT */}
+                  <div className="p-6 w-[200%]">
+                    <h3 className="text-white mb-3">{project.id}. {project.title}</h3>
+                    <p className="text-gray-400 mb-4">{project.description}</p>
+
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex gap-4">
+                      <a
+                        href={project.github}
+                        className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                      >
+                        <Github size={20} />
+                        <span>Code</span>
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* CONTROLS */}
+          <div className="flex justify-center gap-4 mt-8">
+            <button
+              onClick={handlePrev}
+              className=" button-next-prev px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700"
             >
-              <div className="relative h-48 overflow-hidden">
-                <ImageWithFallback
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60" />
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-white mb-3">{project.title}</h3>
-                <p className="text-gray-400 mb-4">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex gap-4">
-                  <motion.a
-                    href={project.github}
-                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Github size={20} />
-                    <span>Code</span>
-                  </motion.a>
-                  <motion.a
-                    href={project.live}
-                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <ExternalLink size={20} />
-                    <span>Live</span>
-                  </motion.a>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              ←
+            </button>
+            <button
+              onClick={handleNext}
+              className="button-next-prev px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700"
+            >
+              →
+            </button>
+          </div>
         </div>
       </div>
     </section>
-    )
+  );
 }
+
 export default Projects;

@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "title": "Deliveboo - Backend",
+    "description": "Food delivery web app built with Laravel (backend) and Vue.js (frontend).",
+    "tags": ["Laravel", "Vue.js", "PHP","Teamwork","API"],
+    "image": "/images/deliveboo-backend.jpeg",
+    "github": "https://github.com/leonardomastrangelo/laravel_deliveboo",
+    "live": "#"
+  },
+  {
+    "id": 2,
+    "title": "Deliveboo - Frontend",
+    "description": "Food delivery web app built with Laravel (backend) and Vue.js (frontend).",
+    "tags": ["Laravel", "Vue.js", "PHP","Teamwork","API"],
+    "image": "/images/deliveboo.jpeg",
+    "github": "https://github.com/giuliamari04/Deliveboo",
+    "live": "#"
+  },
+  {
+    "id": 3,
+    "title": "Boolearn",
+    "description": "Online learning platform inspired by edx.org, built with PHP, Laravel, and JavaScript.",
+    "tags": ["Laravel", "PHP", "JavaScript","Teamwork"],
+    "image": "/images/boolearn.jpeg",
+    "github": "https://github.com/giovannimegliola/boolearn",
+    "live": "#"
+  },
+  {
+    "id": 4,
+    "title": "Boolflix",
+    "description": "Netflix replica using Axios API calls to fetch dynamic content (HTML, CSS, Vue.js).",
+    "tags": ["Vue.js", "Axios", "JavaScript", "CSS","API"],
+    "image": "/images/boolflix.jpeg",
+    "github": "https://github.com/giuliamari04/vite-boolflix",
+    "live": "#"
+  },
+  {
+    "id": 5,
+    "title": "Bakery",
+    "description": "Bakery website showcasing products, menu and online presentation for a bakery business.",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "image": "/images/bakery.jpeg",
+    "github": "#",
+    "live": "#"
+  },
+  {
+    "id": 6,
+    "title": "CRM System",
+    "description": "Customer relationship management system for handling client interactions and data.",
+    "tags": ["Laravel","Blade","Tailwind"],
+    "image": "/images/crm-tailwind.jpeg",
+    "github": "https://github.com/giuliamari04/crm-tailwind",
+    "live": "#"
+  },
+   {
+    "id": 7,
+    "title": "Pet Adoption App",
+    "description": "Application for connecting pet owners with potential adopters.",
+    "tags": ["react","JavaScript(ES6+)","React Router","Tailwind CSS","API"],
+    "image": "/images/pawshelter.jpeg",
+    "github": "https://github.com/giuliamari04/Project_FrontEnd_Exam",
+    "live": "#"
+  }
+]

@@ -1,3 +1,4 @@
+import './assets/styles/App.css';
 import { useEffect, useState } from 'react';
 import  Navigation  from './components/Navigation';
 import  Hero  from './components/Hero';
