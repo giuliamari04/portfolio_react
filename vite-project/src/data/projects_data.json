@@ -4,7 +4,7 @@
     "title": "Deliveboo - Backend",
     "description": "Food delivery web app built with Laravel (backend) and Vue.js (frontend).",
     "tags": ["Laravel", "Vue.js", "PHP","Teamwork","API"],
-    "image": "/vite-project/public/images/deliveboo.jpeg",
+    "image": "/portfolio_react/images/deliveboo.jpeg",
     "github": "https://github.com/leonardomastrangelo/laravel_deliveboo",
     "live": "#"
   },
@@ -13,7 +13,7 @@
     "title": "Deliveboo - Frontend",
     "description": "Food delivery web app built with Laravel (backend) and Vue.js (frontend).",
     "tags": ["Laravel", "Vue.js", "PHP","Teamwork","API"],
-    "image": "/vite-project/public/images/deliveboo.jpeg",
+    "image": "/portfolio_react/images/deliveboo.jpeg",
     "github": "https://github.com/giuliamari04/Deliveboo",
     "live": "#"
   },
@@ -22,7 +22,7 @@
     "title": "Boolearn",
     "description": "Online learning platform inspired by edx.org, built with PHP, Laravel, and JavaScript.",
     "tags": ["Laravel", "PHP", "JavaScript","Teamwork"],
-    "image": "/vite-project/public/images/boolearn.jpeg",
+    "image": "/portfolio_react/images/boolearn.jpeg",
     "github": "https://github.com/giovannimegliola/boolearn",
     "live": "#"
   },
@@ -31,7 +31,7 @@
     "title": "Boolflix",
     "description": "Netflix replica using Axios API calls to fetch dynamic content (HTML, CSS, Vue.js).",
     "tags": ["Vue.js", "Axios", "JavaScript", "CSS","API"],
-    "image": "/vite-project/public/images/boolflix.jpeg",
+    "image": "/portfolio_react/images/boolflix.jpeg",
     "github": "https://github.com/giuliamari04/vite-boolflix",
     "live": "#"
   },
@@ -40,7 +40,7 @@
     "title": "Bakery",
     "description": "Bakery website showcasing products, menu and online presentation for a bakery business.",
     "tags": ["HTML", "CSS", "JavaScript"],
-    "image": "/vite-project/public/images/bakery.jpeg",
+    "image": "/portfolio_react/images/bakery.jpeg",
     "github": "#",
     "live": "#"
   },
@@ -49,7 +49,7 @@
     "title": "CRM System",
     "description": "Customer relationship management system for handling client interactions and data.",
     "tags": ["Laravel","Blade","Tailwind"],
-    "image": "/vite-project/public/images/crm-system.jpeg",
+    "image": "/portfolio_react/images/crm-system.jpeg",
     "github": "https://github.com/giuliamari04/crm-tailwind",
     "live": "#"
   },
@@ -58,7 +58,7 @@
     "title": "Pet Adoption App",
     "description": "Application for connecting pet owners with potential adopters.",
     "tags": ["react","JavaScript(ES6+)","React Router","Tailwind CSS","API"],
-    "image": "/vite-project/public/images/pet-adoption.jpeg",
+    "image": "/portfolio_react/images/pet-adoption.jpeg",
     "github": "https://github.com/giuliamari04/Project_FrontEnd_Exam",
     "live": "#"
   }
