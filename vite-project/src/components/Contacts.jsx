@@ -7,14 +7,14 @@ import { sendForm, init } from "@emailjs/browser";
 init("Dc7DhvJPInSgD5ZkN");
 
 function Contacts({ scrollY }) {
-  const ref = useRef < HTMLElement > null;
+  const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
 
   const [messageStatus, setMessageStatus] = useState("");
-  const [flagStatusmessage, setFlagStatusMessage] = useState(false);
+  const [flagStatusMessage, setFlagStatusMessage] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,8 +28,29 @@ function Contacts({ scrollY }) {
     });
   };
 
+  const validateForm = () => {
+    if (!formData.name.trim()) {
+      setMessageStatus("Please enter your name");
+      setFlagStatusMessage(false);
+      return false;
+    }
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setMessageStatus("Please enter a valid email address");
+      setFlagStatusMessage(false);
+      return false;
+    }
+    if (formData.message.trim().length < 10) {
+      setMessageStatus("Message should be at least 10 characters");
+      setFlagStatusMessage(false);
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) return;
 
     // Usa sendForm per inviare l'email
     sendForm(
@@ -46,7 +67,8 @@ function Contacts({ scrollY }) {
       (error) => {
         console.log("Errore:", error);
         setMessageStatus("Error sending message. Try again later.");
-      },
+        setFlagStatusMessage(false);
+      }
     );
   };
 
@@ -76,7 +98,9 @@ function Contacts({ scrollY }) {
       {/* Parallax Background */}
       <motion.div
         className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-        style={{ y: useTransform(scrollYProgress, [0, 1], [100, -100]) }}
+        style={{
+          y: useTransform(scrollYProgress, [0, 1], [100, -100]),
+        }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -114,13 +138,13 @@ function Contacts({ scrollY }) {
               </p>
             </div>
             <div className="space-y-6">
-              {contactInfo.map((item, index) => (
+              {contactInfo.map((item) => (
                 <motion.a
                   key={item.label}
                   href={item.href}
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ x: 10 }}
                   className="flex items-center gap-4 p-4 bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 hover:border-purple-500/50 transition-all group"
@@ -198,26 +222,22 @@ function Contacts({ scrollY }) {
               >
                 <span>Send Message</span>
                 <Send size={20} />
-                {/* <!-- Elemento per mostrare il messaggio --> */}
               </motion.button>
-              {flagStatusmessage && (
+              {flagStatusMessage && (
                 <div>
-                  <span className="badge-success">
-                    {messageStatus}
-                  </span>
+                  <span className="badge-success">{messageStatus}</span>
                 </div>
               )}
-              {!flagStatusmessage && messageStatus && (
+              {!flagStatusMessage && messageStatus && (
                 <div>
-                  <span className="badge-error">
-                    {messageStatus}
-                  </span>
+                  <span className="badge-error">{messageStatus}</span>
                 </div>
               )}
             </form>
           </motion.div>
         </div>
       </div>
+
       {/* Footer */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -236,4 +256,5 @@ function Contacts({ scrollY }) {
     </section>
   );
 }
+
 export default Contacts;
