@@ -1,12 +1,22 @@
-import {  motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { motion } from "framer-motion";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 
+function Hero({ scrollY }) {
+  const parallaxY = scrollY * 0.5;
 
-function Hero({scrollY}){
-    const parallaxY = scrollY * 0.5;
-    return(
-       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  const scrollToSection = (e, href) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  return (
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
       {/* Parallax Background */}
       <motion.div
         className="absolute inset-0 z-0"
@@ -45,7 +55,13 @@ function Hero({scrollY}){
           ease: "easeInOut",
         }}
       />
-      <div className="image-profile-container"><img src="/portfolio_react/images/profile.jpeg" alt="Profile" className="image-profile" /></div>
+      <div className="image-profile-container">
+        <img
+          src="/portfolio_react/images/profile.jpeg"
+          alt="Profile"
+          className="image-profile"
+        />
+      </div>
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
@@ -59,7 +75,7 @@ function Hero({scrollY}){
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Hi, I'm{' '}
+            Hi, I'm{" "}
             <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
               Giulia Mariano
             </span>
@@ -78,7 +94,10 @@ function Hero({scrollY}){
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            Skilled in Laravel, Vue.js, PHP, Python, React and JavaScript. Currently studying Computer Engineering with hands-on experience in web projects. Motivated and curious, eager to create innovative digital solutions.
+            Skilled in Laravel, Vue.js, PHP, Python, React and JavaScript.
+            Currently studying Computer Engineering with hands-on experience in
+            web projects. Motivated and curious, eager to create innovative
+            digital solutions.
           </motion.p>
 
           <motion.div
@@ -88,7 +107,9 @@ function Hero({scrollY}){
             transition={{ delay: 0.8 }}
           >
             <motion.a
+              key="contact"  
               href="#contact"
+              onClick={(e) => scrollToSection(e, "#contact")}
               className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full hover:shadow-lg hover:shadow-purple-500/50 transition-shadow"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -96,7 +117,9 @@ function Hero({scrollY}){
               Get in Touch
             </motion.a>
             <motion.a
+              key="projects"
               href="#projects"
+              onClick={(e) => scrollToSection(e, "#projects")}
               className="px-8 py-3 border border-purple-500 text-white rounded-full hover:bg-purple-500/10 transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -112,9 +135,19 @@ function Hero({scrollY}){
             transition={{ delay: 1 }}
           >
             {[
-              { icon: Github, href: 'https://github.com/giuliamari04', label: 'GitHub',target:"_blank" },
-              { icon: Linkedin, href: 'https://www.linkedin.com/in/giulia-mariano-3a1a052b1/?locale=en_US', label: 'LinkedIn',target:"_blank" },
-              { icon: Mail, href: '#contact', label: 'Email' },
+              {
+                icon: Github,
+                href: "https://github.com/giuliamari04",
+                label: "GitHub",
+                target: "_blank",
+              },
+              {
+                icon: Linkedin,
+                href: "https://www.linkedin.com/in/giulia-mariano-3a1a052b1/?locale=en_US",
+                label: "LinkedIn",
+                target: "_blank",
+              },
+              { icon: Mail, href: "#contact", label: "Email" },
             ].map((social) => (
               <motion.a
                 key={social.label}
@@ -139,6 +172,6 @@ function Hero({scrollY}){
         </motion.div>
       </div>
     </section>
-    )
+  );
 }
 export default Hero;
