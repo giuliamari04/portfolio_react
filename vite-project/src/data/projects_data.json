@@ -4,7 +4,7 @@
     "title": "Deliveboo - Backend",
     "description": "Food delivery web app built with Laravel (backend) and Vue.js (frontend).",
     "tags": ["Laravel", "Vue.js", "PHP","Teamwork","API"],
-    "image": "/portfolio_react/images/deliveboo.jpeg",
+    "image": "/portfolio_react/images/deliveboo-backend.jpeg",
     "github": "https://github.com/leonardomastrangelo/laravel_deliveboo",
     "live": "#"
   },
@@ -49,7 +49,7 @@
     "title": "CRM System",
     "description": "Customer relationship management system for handling client interactions and data.",
     "tags": ["Laravel","Blade","Tailwind"],
-    "image": "/portfolio_react/images/crm-system.jpeg",
+    "image": "/portfolio_react/images/crm-tailwind.jpeg",
     "github": "https://github.com/giuliamari04/crm-tailwind",
     "live": "#"
   },
@@ -58,7 +58,7 @@
     "title": "Pet Adoption App",
     "description": "Application for connecting pet owners with potential adopters.",
     "tags": ["react","JavaScript(ES6+)","React Router","Tailwind CSS","API"],
-    "image": "/portfolio_react/images/pet-adoption.jpeg",
+    "image": "/portfolio_react/images/pawshelter.jpeg",
     "github": "https://github.com/giuliamari04/Project_FrontEnd_Exam",
     "live": "#"
   }
