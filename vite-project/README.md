@@ -19,3 +19,16 @@ npm create vite@latest my-app
 cd my-app
 npm install
 npm run dev
+
+Come fare deploy?
+fare push modifiche
+
+npm run build
+npm run deploy
+
+oppure
+
+npm run build
+git add dist
+git commit -m "build aggiornata"
+git push
