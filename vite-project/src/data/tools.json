@@ -3,7 +3,9 @@
   "VS Code",
   "Vite",
   "AWS",
-  "PostgreSQL",
+  "PostgressSQL",
   "Git",
-  "MongoDB"
+  "MongoDB",
+  "PgAdmin4",
+  "Postman"
 ]
