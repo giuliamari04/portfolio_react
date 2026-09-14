@@ -61,5 +61,14 @@
     "image": "/portfolio_react/images/pawshelter.jpeg",
     "github": "https://github.com/giuliamari04/Project_FrontEnd_Exam",
     "live": "#"
+  },
+  {
+    "id": 8,
+    "title": "Studen App",
+    "description": "Application for managing student information and academic records.",
+    "tags": ["react","JavaScript(ES6+)","React Router","Tailwind CSS","Superbase"],
+    "image": "/portfolio_react/images/studentapp.jpeg",
+    "github": "https://github.com/giuliamari04/StudentApp_demo",
+    "live": "https://student-app-demo-nine.vercel.app"
   }
 ]
