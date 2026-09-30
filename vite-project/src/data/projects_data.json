@@ -70,5 +70,14 @@
     "image": "/portfolio_react/images/studentapp.jpeg",
     "github": "https://github.com/giuliamari04/StudentApp_demo",
     "live": "https://student-app-demo-nine.vercel.app"
+  },
+   {
+    "id": 9,
+    "title": "Matrix of Destiny",
+    "description": "An interactive web application for calculating and exploring the Destiny Matrix, with a simple and intuitive interface for presenting personalized results.",
+    "tags": ["react","JavaScript(ES6+)","React Router","Vercel"],
+    "image": "/portfolio_react/images/matrix-destiny.png",
+    "github": "https://github.com/giuliamari04/matrix-chart2.1",
+    "live": "https://matrixdestiny-mu.vercel.app"
   }
 ]

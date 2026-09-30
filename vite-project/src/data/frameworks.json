@@ -4,5 +4,7 @@
     { "name": "React", "level": 60 },
     { "name": "Node.js", "level": 60 },
     { "name": "Tailwind CSS", "level": 75 },
-    { "name": "Livewire", "level": 70 }
+    { "name": "Bootstrap CSS", "level": 75 },
+    { "name": "Livewire", "level": 70 },
+    {"name":"Spring","level":75}
 ]

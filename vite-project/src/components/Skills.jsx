@@ -137,12 +137,12 @@ function Skills({scrollY}){
         >
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <h3 className="text-white mb-2">7</h3>
+              <h3 className="text-white mb-2">9</h3>
               <p className="text-gray-400">Projects Completed</p>
             </div>
             <div>
-              <h3 className="text-white mb-2">Just started</h3>
-              <p className="text-gray-400">Happy Clients</p>
+              <h3 className="text-white mb-2">Currently studying</h3>
+              <p className="text-gray-400">and working</p>
             </div>
             <div>
               <h3 className="text-white mb-2">2+</h3>
